@@ -43,6 +43,7 @@ group :development, :test do
   gem 'devise-jwt'
   gem 'jsonapi-serializer'
 
+  gem "twilio-ruby"
   gem "mongoid"
 
   group :test do

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :messages
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
                registrations: 'users/registrations'
              }
 
+  namespace :users do
+    resources :messages, except: [:show, :update, :destroy, :edit]
+  end
   # Defines the root path route ("/")
   # root "posts#index"
 end

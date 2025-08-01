@@ -7,10 +7,12 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "example.com"
+    origins "*" # only for assesment test
 
     resource "*",
       headers: :any,
+      expose: ['Authorization'],
+      credentials: false,
       methods: [:get, :post, :put, :patch, :delete, :options, :head]
   end
 end

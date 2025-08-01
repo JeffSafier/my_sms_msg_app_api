@@ -4,6 +4,17 @@ class Users::SessionsController < Devise::SessionsController
   include RackSessionsFix
   respond_to :json
 
+  def create
+    user = User.find_by(email: params[:user][:email])
+
+    if user && user.valid_password?(params[:user][:password])
+      sign_in(user)
+      render json: { message: 'Signed in', user: user }, status: :ok
+    else
+      render json: { error: 'Invalid credentials' }, status: :unauthorized
+    end
+  end
+
   private
 
   def respond_with(current_user, _opts = {})
